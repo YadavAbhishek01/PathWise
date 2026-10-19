@@ -24,7 +24,7 @@ function RoadmapPage() {
   return (
     <div className="p-4 sm:p-6 md:p-8">
       <div className="mb-1 flex items-center gap-1.5 text-sm text-gray-400">
-        <ArrowLeft size={20} onClick={() => navigate("/")} className="cursor-pointer" />
+        <ArrowLeft size={20} onClick={() => navigate("/home")} className="cursor-pointer" />
         <p>Back</p>
       </div>
 

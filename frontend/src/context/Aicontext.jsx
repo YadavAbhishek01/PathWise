@@ -91,7 +91,23 @@ export const AiProvider=({children})=>{
                 setLoading(false)
             }
     }
-    const value={createRoadmap,roadmapData,loading,generateModule,moduleData,markModuleComplete,getUserRoadmap,userRoadmapData,getRoadmapById}
+    const deleteUserRoadamp=async(roadmapId)=>{
+       try {
+         const res=await axiosInstants.get(`/ai/roadmap/delete/${roadmapId}`);
+        if(res.data.success)
+        {
+            
+            setUserRoadmapData((prev)=>prev.filter((item)=>item._id!==roadmapId));
+        }
+        else{
+            toast.error(res.data.message)
+        }
+       } catch (error) {
+        console.log(error.response?.data?.message);
+        toast.error(error.response?.data?.message);
+       }
+    }
+    const value={createRoadmap,roadmapData,loading,generateModule,moduleData,markModuleComplete,getUserRoadmap,userRoadmapData,setUserRoadmapData,deleteUserRoadamp,getRoadmapById}
     return (
         <Aicontext.Provider value={value}>
             {children}

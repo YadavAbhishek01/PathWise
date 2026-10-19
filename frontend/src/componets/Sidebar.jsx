@@ -1,11 +1,11 @@
-import { LogOut, Plus } from "lucide-react";
+import {  LogOut, Plus, Trash } from "lucide-react";
 import { useContext, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Aicontext } from "../context/Aicontext";
 import { Authcontext } from "../context/Auth.context";
 
 function Sidebar({ onNavigate }) {
-  const { getUserRoadmap, userRoadmapData } = useContext(Aicontext);
+  const { getUserRoadmap, userRoadmapData ,deleteUserRoadamp} = useContext(Aicontext);
   const { Logout } = useContext(Authcontext);
   const navigate = useNavigate();
   const [searchparams] = useSearchParams();
@@ -28,7 +28,10 @@ function Sidebar({ onNavigate }) {
     onNavigate?.();
     navigate(path);
   };
-
+  const handleDelete=async(e,id)=>{
+    e.stopPropagation();
+    await deleteUserRoadamp(id)
+  }
   return (
     <aside className="h-full w-full bg-white md:sticky md:top-0 md:h-screen md:w-[220px]">
       <div className="flex h-full flex-col p-4">
@@ -58,13 +61,14 @@ function Sidebar({ onNavigate }) {
                 <div
                   key={item._id}
                   onClick={() => handleNavigate(`/roadmap?id=${item._id}`)}
-                  className={`group mb-2 flex cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 text-sm font-medium transition-colors ${
+                  className={` relative group mb-2 flex cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 text-sm font-medium transition-colors ${
                     isActive
                       ? "bg-[#F5F3ED] text-[#1F2421]"
                       : "text-[#6B756E] hover:bg-[#F5F3ED]"
                   }`}
                 >
                   <span className="truncate">{item.topic.toUpperCase()}</span>
+                  <Trash size={15} onClick={(e)=>handleDelete(e,item._id)} className="absolute top-2 right-2 cursor-pointer opacity-0 group-hover:opacity-100 hover:text-red-500 transition-opacity"/>
                 </div>
               );
             })}

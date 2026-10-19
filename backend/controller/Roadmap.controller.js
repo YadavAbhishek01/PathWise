@@ -125,3 +125,53 @@ export const getRoadmap = async (req, res) => {
     return res.status(500).json({ message: "internal server error", success: false });
   }
 };
+export const deleteUserRoadmap=async(req,res)=>{
+    try {
+        const UserId=req.user._id
+        const {roadmapId}=req.params;
+        if(!UserId)
+        {
+            return res.status(401).json({
+                message:"Unauthorize Access.",
+                success:false
+            })
+        }
+         if(!roadmapId)
+        {
+            return res.status(401).json({
+                message:"RoadmapId is missing",
+                success:false
+            })
+        }
+        const FindUserRoadmap=await Roadmap.findById(roadmapId);
+        if(!FindUserRoadmap)
+        {
+            return res.status(400).json({
+                message:"Roadmap not found.",
+                success:false,
+                data:{}
+            })
+        }
+        if(FindUserRoadmap.userId.equals(UserId))
+        {
+            const deleteData=await Roadmap.deleteOne({_id:roadmapId});
+            return res.status(200).json({
+                message:"Roadmap Deleted Successful",
+                success:true,
+                data:deleteData
+        })
+        }
+        else{
+            return res.status(401).json({
+                message:"You have not Access to delete this Roadmap.",
+                success:false
+            })
+        }
+    } catch (error) {
+        console.log(error)
+         return res.status(500).json({
+      message: "Internal server error.",
+      success: false,
+    });
+    }
+}

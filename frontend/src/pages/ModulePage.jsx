@@ -18,7 +18,7 @@ function ModulePage() {
       setCompleting(true);
       const success = await markModuleComplete(roadmapId, moduleId);
       if (success) {
-        navigate("/roadmap");
+        navigate(`/roadmap?id=${roadmapId}`);
       }
     } catch (error) {
       console.log(error);
@@ -69,7 +69,7 @@ function ModulePage() {
     <div className="w-full p-4 sm:p-6 md:p-8">
       <div
         className="mb-3 flex cursor-pointer items-center gap-1 text-xs text-[#B4B2A9]"
-        onClick={() => navigate("/roadmap")}
+        onClick={() => navigate(`/roadmap?id=${roadmapId}`)}
       >
         <ArrowLeft size={12} /> Back to roadmap
       </div>
