@@ -74,7 +74,7 @@ export const getUserRoadmap=async(req,res)=>{
         const findUsersRoadmap=await Roadmap.find({userId});
         if(findUsersRoadmap.length===0)
         {
-            return res.status(400).json({
+            return res.status(200).json({
                 message:"roadmap not found",
                 success:false
             })

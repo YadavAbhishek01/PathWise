@@ -74,12 +74,12 @@ function ModulePage() {
         <ArrowLeft size={12} /> Back to roadmap
       </div>
 
-      <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between">
+      {/* <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between">
         <h2 className="font-['Fraunces'] text-xl text-[#1F2421]">{moduleData.title}</h2>
         <button className="flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-[#E8E6DF] px-3 py-1.5 text-sm text-[#1F2421] transition-colors hover:border-[#C98A3E] hover:text-[#C98A3E]">
           <Download size={14} /> Download PDF
         </button>
-      </div>
+      </div> */}
 
       <p className="mb-5 text-sm leading-7 text-[#6B756E]">{moduleData.explanation}</p>
 

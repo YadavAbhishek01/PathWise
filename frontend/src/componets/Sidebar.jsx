@@ -36,7 +36,7 @@ function Sidebar({ onNavigate }) {
     <aside className="h-full w-full bg-white md:sticky md:top-0 md:h-screen md:w-[220px]">
       <div className="flex h-full flex-col p-4">
         <div>
-          <h1 className="mb-3 px-1 font-['Fraunces'] text-lg text-[#1F2421] md:block hidden">
+          <h1 className="mb-3 px-1 font-['Fraunces'] text-lg text-[#1F2421] md:block hidden cursor-pointer" onClick={()=>navigate('/home')}>
             PathWise
           </h1>
 

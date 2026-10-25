@@ -19,6 +19,10 @@ export default function Signup() {
       toast.error("password doest not match");
       return;
     }
+    if(password.length!==8)
+    {
+      return toast.error('Password must be 8 characters')
+    }
     const data = {
       username: fullname,
       email,
@@ -104,6 +108,7 @@ export default function Signup() {
                 <input
                   id="password"
                   type="password"
+                  max={8}
                   placeholder="Min. 8 characters"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
